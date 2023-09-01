@@ -124,5 +124,109 @@ student = Student("Alice", "S123", 3)
 staff = Staff("John", "T567", "Computer Science")
 
 # Display user information
-student.display_info()
-staff.display_info()
+#student.display_info()
+#staff.display_info()
+#----------------POLTMORPHISM--------------it is used in class methods, where we can have multiple classes with the same method name.
+class UG:
+    def __init__(self, name):
+        self.name = name
+    def attendee(self):
+        print("college attendee")
+class PG:
+    def __init__(self, name):
+        self.name = name
+    def attendee(self):
+        print("college attendee")
+class Dean: #<--------------------+
+    def __init__(self, name):    #|
+        self.name = name         #|
+    def attendee(self):          #|
+        print("collge attendee") #|
+                                 #|
+#create object                   #|
+ug = UG("Manish")                #|
+pg = PG("Rumi")                  #|
+dean = Dean("B.k. Roy")#>---------+
+
+#use loop to get the attendee status
+for x in (pg, ug, dean):
+    x.attendee()
+
+#-----------------INHERITANCE CLASS POLYMORPHISM--------------What about chid classes with same name
+class College:
+    def __init__(self, name : str, card : str):
+        self.name = name
+        self.card = card
+        
+    def attendee(self):
+        print(f"{self.name}, college attendee")
+        
+class Hostel(College): 
+    def __init__(self, name : str, card : str):
+        super().__init__(name, card) 
+        
+    def attendee(self):
+        print(f"{self.name}, hostel attendee")
+        
+class Academic(College):
+    def __init__(self, name : str, card : str):
+        super().__init__(name, card) 
+        
+    def attendee(self):
+        print(f"{self.name}, academic attendee")
+        
+class Mess(College): 
+    def __init__(self, name : str, card : str):
+        super().__init__(name, card) 
+    
+    def attendee(self):
+        print(f"{self.name}, mess attendee")
+ 
+#create object  
+hostel = Hostel("sabbir", "yes")    
+mess = Mess("Hmilson", "yes")
+academic = Academic("debashmita", "no")
+
+#cls_name.method(object)
+
+for w in (hostel, mess, academic):
+   w.attendee()
+   print("card : " +w.card)
+
+#here we pass data for output, from child afterretriving from parents(maybe due to "self"). Can we directly retrive from parent
+
+#---------------COMPOSITION-------------
+#these classes are part of car class.
+class Engine:
+    def start(self):
+        print("Engine started")
+        
+    def stop(self):
+        print("Engine stoped")
+        
+class Wheel:
+    def inflat(self):
+        print("wheels inflated")
+    
+    def deflat(self):
+        print("wheel deflatted")
+        
+#using composition create car class
+class Car:
+    def __init__(self):
+        self.engine = Engine()
+        self.wheels = [Wheel() for _ in range(4)]
+        
+    def start(self):
+        self.engine.start()
+        
+    def inflate_wheels(self):
+        for wheel in self.wheels:
+            wheel.inflat()
+
+#create object            
+my_car = Car()
+
+my_car.start()
+my_car.inflate_wheels()
+
