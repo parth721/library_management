@@ -227,6 +227,6 @@ class Car:
 #create object            
 my_car = Car()
 
-my_car.start()
-my_car.inflate_wheels()
+#my_car.start()
+#my_car.inflate_wheels()
 
